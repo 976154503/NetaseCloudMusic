@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <div class="test">
-      <p>123</p>
-    </div>
+    <Header></Header>
   </div>
 </template>
-
-<style lang="scss">
-.test {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  transform: translate(100px, 100px);
+<script>
+import Header from '@/components/Header'
+export default {
+  name: 'App',
+  components: { Header },
+  comments: {
+    Header
+  }
 }
+</script>
+<style lang="scss">
+
 </style>
