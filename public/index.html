@@ -1,17 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
+    <!--可以让部分国产浏览器默认采用高速模式渲染页面-->
+    <meta name="renderer" content="webkit">
+    <!--为了让 IE 浏览器运行最新的渲染模式下-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+    <!--
+    apple-touch-icon: 是苹果私有的属性
+    作用: 指定将网页保存到主屏幕上的时候的图标
+    -->
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./apple-touch-icon114.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./apple-touch-icon152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon180.png">
+    <!--网页快捷图标-->
+    <link rel="icon" href="./favicon.ico">
+</head>
+<body>
+
+<div id="app"></div>
+
+</body>
 </html>
+<!--
+移动端适配
+1.使用pxtorem px转成rem
+
+npm install lib-flexible 或者 yarn add lib-flexible
+
+让网页根据设备dpr和宽度，利用viewport和html根元素的font-size配合rem来适配不同尺寸的移动端设备
+
+在main.js引入中：import 'lib-flexible/flexible.js'
+
+2.npm install postcss-pxtorem 或者 yarn add postcss-pxtorem
+在package.json内，在postcss内添加：
+使用 postcss-px-to-viewport  注意：移动端用方便，不过在pc端会出新字体过大的现象
+npm install  postcss-px-to-viewport 或者 yarn add  postcss-px-to-viewport
+"postcss": {
+   "plugins": {
+    "autoprefixer": {},
+    "postcss-pxtorem": {
+           "rootValue": 75, // 设计稿宽度的1/10,（JSON文件中不加注释，此行注释及下行注释均删除）
+
+           "selectorBlackList": [ "vant" ],//忽略转rem项，列表中不进行转rem
+
+           "propList":["*"] // 需要做转化处理的属性，如`hight`、`width`、`margin`等，`*`表示全部
+        },
+     "postcss-px-to-viewport": {
+     "viewportWidth": 750,
+     "minPixelValue": 1
+        }
+    }
+},
+
+借助fastclick解决移动端100~300ms点击时间延迟问题
+-->
