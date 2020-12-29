@@ -44,7 +44,58 @@
   }
 }
 
-//
+//根据属性选择器设置次要背景颜色
+@mixin bg_sub_color() {
+  [data-theme=theme-default] & {
+    background-color: $background-color-sub-theme;
+  }
+  [data-theme=theme-green] & {
+    background-color: $background-color-sub-theme1;
+  }
+  [data-theme=theme-dark] & {
+    background-color: $background-color-sub-theme2;
+  }
+}
+
+//根据属性设置字体默认颜色
+@mixin font_color() {
+  [data-theme=theme-default] & {
+    color: $font-color-theme;
+  }
+  [data-theme=theme-green] & {
+    color: $font-color-theme1;
+  }
+  [data-theme=theme-dark] & {
+    color: $font-color-theme2;
+  }
+}
+
+//根据属性设置字体激活颜色
+@mixin font_active_color() {
+  [data-theme=theme-default] & {
+    color: $font-active-color-theme;
+  }
+  [data-theme=theme-green] & {
+    color: $font-active-color-theme1;
+  }
+  [data-theme=theme-dark] & {
+    color: $font-active-color-theme2;
+  }
+}
+
+//根据属性设置字体激活后边框颜色
+@mixin border_color() {
+  [data-theme=theme-default] & {
+    border-color: $border-color-theme;
+  }
+  [data-theme=theme-green] & {
+    border-color: $border-color-theme1;
+  }
+  [data-theme=theme-dark] & {
+    border-color: $border-color-theme2;
+  }
+}
+
 /*
 根据属性选择器设置图片
 $url:需要处理的图片路径
