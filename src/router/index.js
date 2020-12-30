@@ -9,21 +9,22 @@ const Rank = () => import('@/views/Rank')
 const Search = () => import('@/views/Search')
 
 const routes = [
+  { path: '/', redirect: '/recommend' },
   {
     path: '/recommend',
-    comments: Recommend
+    component: Recommend
   },
   {
     path: '/singer',
-    comments: Singer
+    component: Singer
   },
   {
     path: '/rank',
-    comments: Rank
+    component: Rank
   },
   {
     path: '/search',
-    comments: Search
+    component: Search
   }
 ]
 
