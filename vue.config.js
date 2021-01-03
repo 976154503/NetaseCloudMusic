@@ -1,7 +1,8 @@
 module.exports = {
   devServer: { // 环境配置
     host: '0.0.0.0',
-    public: '211.88.26.170:8080',
+    // public: '211.88.26.170:8080',
+    public: '192.168.31.190:8080',
     port: 8080,
     https: false,
     hotOnly: false,

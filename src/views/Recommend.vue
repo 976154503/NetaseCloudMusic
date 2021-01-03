@@ -1,5 +1,5 @@
 <template>
-  <Banner></Banner>
+  <Banner :bannerData="bannerData"></Banner>
 </template>
 
 <script>
@@ -10,10 +10,15 @@ export default {
   name: 'Recommend',
   components: { Banner },
   comments: Banner,
+  data () {
+    return {
+      bannerData: []
+    }
+  },
   created () {
     getBanner()
       .then((data) => {
-        console.log(data)
+        this.bannerData = data.banners
       })
       .catch((err) => {
         console.log(err)

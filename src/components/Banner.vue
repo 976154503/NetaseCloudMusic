@@ -1,17 +1,20 @@
 <template>
   <div>
-    <div>
+    <div class="banner">
+      <!--  v-if  解决轮播到最后一页不自动播放    -->
       <swiper
         :options="swiperOptions"
+        v-if="bannerData.length>0"
       >
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 1</swiper-slide>
+        <swiper-slide class="item" v-for="value in bannerData" :key="value.bannerId">
+          <a :href="value.url">
+            <img :src="value.pic" alt="">
+          </a>
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
+
     </div>
-    <div class="swiper-pagination"></div>
   </div>
 </template>
 
@@ -41,6 +44,13 @@ export default {
     Swiper,
     SwiperSlide
   },
+  props: {
+    bannerData: {
+      type: Array,
+      default: () => [],
+      require: true
+    }
+  },
   data () {
     return {
       swiperOptions: {
@@ -52,13 +62,38 @@ export default {
           bulletActiveClass: 'swiper-bullet-active'
         },
         loop: true,
-        autoplay: { delay: 4000 }
+        autoplay: { delay: 4000 },
+        observer: true,
+        observerParents: true,
+        observeSlideChildren: true
       }
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.banner {
+  .item {
+    img {
+      width: 100%;
+      height: 300px;
+    }
+  }
+}
+</style>
+<style lang="scss">
+@import "../assets/css/base";
+.banner {
+  .swiper-pagination-bullet {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    opacity:1;
+  }
+  .swiper-bullet-active {
+    @include bg_color
+  }
+}
 
 </style>
