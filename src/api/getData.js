@@ -12,3 +12,5 @@ export const getPersonalized = () => netWork.get('personalized?limit=6')
 export const getAlbum = () => netWork.get('album/newest')
 // 获取推荐新音乐
 export const getNewSongs = () => netWork.get('/personalized/newsong')
+// 获取歌单详情
+export const getPlayList = (data) => netWork.get('/playlist/detail', data)

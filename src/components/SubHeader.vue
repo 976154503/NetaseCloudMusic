@@ -1,0 +1,76 @@
+<!--公共头-->
+<template>
+  <div class="header" @click="changeTheme()">
+    <div class="header-left" @click.stop="back()"></div>
+    <div class="header-title">{{title}}</div>
+    <div class="header-right"></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'SubHeader',
+  data: function () {
+    return {
+      theme: ['theme-default', 'theme-green', 'theme-dark'],
+      index: 0
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      default: '',
+      require: true
+    }
+  },
+  methods: {
+    // 修改主题颜色
+    changeTheme () {
+      this.index++
+      if (this.index >= this.theme.length) {
+        this.index = 0
+      }
+      document.documentElement.setAttribute('data-theme', this.theme[this.index])
+    },
+    back () {
+      window.history.back()
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss">
+@import "../assets/css/base";
+
+.header {
+  width: 100%;
+  height: 100px;
+  //调用封装的css方法引入背景颜色
+  @include bg_color();
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 999;
+  .header-left, .header-right {
+    width: 84px;
+    height: 84px;
+    margin-top: 8px;
+  }
+
+  .header-title {
+    text-align: center;
+    line-height: 84px;
+    color: #fff;
+    @include font_size($font_large);
+    @include no-wrap
+  }
+
+  .header-left {
+    @include bg_image('../assets/images/back')
+  }
+
+  .header-right {
+    @include bg_image('../assets/images/more')
+  }
+}
+</style>

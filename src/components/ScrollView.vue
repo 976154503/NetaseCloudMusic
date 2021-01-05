@@ -13,6 +13,7 @@ export default {
     this.iscroll = new IScroll(this.$refs.wrapper, {
       mouseWheel: false,
       scrollbars: false,
+      probeType: 3,
       scrollX: false,
       disableMouse: true,
       disablePointer: true,
@@ -36,6 +37,14 @@ export default {
     }
     // 3.告诉观察者对象需要观察谁和内容
     observer.observe(this.$refs.wrapper, config)
+  },
+  methods: {
+    // 监听滑动 并将滑动距离回传
+    scrolling (fn) {
+      this.iscroll.on('scroll', function () {
+        fn(this.y)
+      })
+    }
   }
 }
 </script>
