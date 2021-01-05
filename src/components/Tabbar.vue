@@ -1,3 +1,4 @@
+<!--顶部导航-->
 <template>
   <div class="tabber">
     <router-link tag="div" class="item" to="/recommend"><span>推荐音乐</span></router-link>
@@ -22,7 +23,8 @@ export default {
   @include bg_sub_color();
   height: 84px;
   justify-content: space-around;
-
+  position: relative;
+  z-index: 999;
   .item {
     span {
       line-height: 84px;

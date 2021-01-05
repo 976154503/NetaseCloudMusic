@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 // 全局配置
-Axios.default.url = '/api'
+Axios.defaults.baseURL = '/api'
 Axios.default.timeout = 5000
 // 封装请求方法
 export default {

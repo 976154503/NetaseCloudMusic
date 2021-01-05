@@ -5,4 +5,8 @@
 import netWork from '@/api/netWork'
 
 // 获取Banner
-export const getBanner = () => netWork.get('http://127.0.0.1:3000/banner?type=2')
+export const getBanner = () => netWork.get('banner?type=2')
+// 获取推荐歌单
+export const getPersonalized = () => netWork.get('personalized?limit=6')
+// 获取最新专辑
+export const getAlbum = () => netWork.get('album/newest')

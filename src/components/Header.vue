@@ -1,3 +1,4 @@
+<!--公共头-->
 <template>
   <div class="header" @click="changeTheme()">
     <div class="header-left"></div>
@@ -38,7 +39,8 @@ export default {
   @include bg_color();
   display: flex;
   justify-content: space-between;
-
+  position: relative;
+  z-index: 999;
   .header-left, .header-right {
     width: 84px;
     height: 84px;

@@ -1,3 +1,4 @@
+<!--轮播图-->
 <template>
   <div>
     <div class="banner">
@@ -61,7 +62,7 @@ export default {
           // 激活的分页小圆点样式
           bulletActiveClass: 'swiper-bullet-active'
         },
-        loop: true,
+        loop: true, // 自动轮播
         autoplay: { delay: 4000 },
         observer: true,
         observerParents: true,
