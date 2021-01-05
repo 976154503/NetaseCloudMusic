@@ -4,13 +4,12 @@
   <div>
     <div class="title"><h2>{{title}}</h2></div>
     <div class="personalized">
-      <div class="item" v-for="value in personalizedData" :key="value.id">
-        <img class="personalized-top" :src="value.picUrl" alt="">
-        <p class="personalized-bottom">{{ value.name }}}</p>
+      <div class="item" v-for="value in personalizedData" :key="value.id" @click="selectItem(value.id)">
+        <img class="personalized-top" v-lazy="value.picUrl" alt="">
+        <p class="personalized-bottom">{{ value.name }}</p>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -26,6 +25,11 @@ export default {
       type: String,
       default: '',
       require: true
+    }
+  },
+  methods: {
+    selectItem (id) {
+      this.$emit('select', id)
     }
   }
 }

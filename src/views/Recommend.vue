@@ -3,17 +3,20 @@
     <ScrollView>
       <div>
         <Banner :bannerData="bannerData"></Banner>
-        <Personalized :personalizedData="personalizedData" :title="'推荐歌单'"></Personalized>
+        <Personalized :personalizedData="personalizedData" :title="'推荐歌单'" @select="fatherSelectItem"></Personalized>
         <Personalized :personalizedData="albumData" :title="'推荐专辑'"></Personalized>
+        <NewSongs :newSongsData="newSongsData"></NewSongs>
       </div>
     </ScrollView>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { getBanner, getPersonalized, getAlbum } from '@/api/getData'
-import Banner from '@/components/Banner'
+import { getBanner, getPersonalized, getAlbum, getNewSongs } from '../api/getData'
+import Banner from '../components/Banner'
 import Personalized from '../components/Personalized'
+import NewSongs from '../components/NewSongs'
 import ScrollView from '../components/ScrollView'
 
 export default {
@@ -21,14 +24,22 @@ export default {
   components: {
     Personalized,
     Banner,
+    NewSongs,
     ScrollView
   },
-  comments: Banner,
-  data () {
+  methods: {
+    fatherSelectItem (id) {
+      this.$router.push({
+        path: `/recommend/details/${id}`
+      })
+    }
+  },
+  data: function () {
     return {
       bannerData: [],
       personalizedData: [],
-      albumData: []
+      albumData: [],
+      newSongsData: []
     }
   },
   created () {
@@ -54,7 +65,15 @@ export default {
       .catch((err) => {
         console.log(err)
       })
+    getNewSongs()
+      .then((data) => {
+        this.newSongsData = data.result
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
+
 }
 </script>
 
@@ -65,5 +84,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
 }
 </style>

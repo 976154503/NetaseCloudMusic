@@ -10,10 +10,7 @@ import Header from '@/components/Header'
 import Tabber from '@/components/Tabbar'
 export default {
   name: 'App',
-  components: { Tabber, Header },
-  comments: {
-    Header
-  }
+  components: { Tabber, Header }
 }
 </script>
 <style lang="scss">

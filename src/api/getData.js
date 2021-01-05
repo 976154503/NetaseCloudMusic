@@ -10,3 +10,5 @@ export const getBanner = () => netWork.get('banner?type=2')
 export const getPersonalized = () => netWork.get('personalized?limit=6')
 // 获取最新专辑
 export const getAlbum = () => netWork.get('album/newest')
+// 获取推荐新音乐
+export const getNewSongs = () => netWork.get('/personalized/newsong')
