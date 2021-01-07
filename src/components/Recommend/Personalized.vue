@@ -4,7 +4,7 @@
   <div>
     <div class="title"><h2>{{title}}</h2></div>
     <div class="personalized">
-      <div class="item" v-for="value in personalizedData" :key="value.id" @click="selectItem(value.id)">
+      <div class="item" v-for="value in personalizedData" :key="value.id" @click="selectItem(value.id,type)">
         <img class="personalized-top" v-lazy="value.picUrl" alt="">
         <p class="personalized-bottom">{{ value.name }}</p>
       </div>
@@ -25,18 +25,23 @@ export default {
       type: String,
       default: '',
       require: true
+    },
+    type: {
+      type: String,
+      default: '',
+      require: true
     }
   },
   methods: {
-    selectItem (id) {
-      this.$emit('select', id)
+    selectItem (id, type) {
+      this.$emit('select', id, type)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/base";
+@import "../../assets/css/base";
 
 .title {
   @include font_size($font_large);

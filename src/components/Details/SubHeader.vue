@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/base";
+@import "../../assets/css/base";
 
 .header {
   width: 100%;
@@ -66,11 +66,11 @@ export default {
   }
 
   .header-left {
-    @include bg_image('../assets/images/back')
+    @include bg_image('../../assets/images/back')
   }
 
   .header-right {
-    @include bg_image('../assets/images/more')
+    @include bg_image('../../assets/images/more')
   }
 }
 </style>

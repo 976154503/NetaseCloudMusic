@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/base";
+@import "../../assets/css/base";
 
 .detailBottom {
   width: 100%;
@@ -48,7 +48,7 @@ export default {
       width: 60px;
       height: 60px;
       overflow: hidden;
-      @include bg_image('../assets/images/small_play')
+      @include bg_image('../../assets/images/small_play')
     }
 
     .title {

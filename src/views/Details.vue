@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import { getPlayList } from '../api/getData'
-import SubHeader from '../components/SubHeader'
-import DetailsTop from '../components/DetailsTop'
-import DetailsBottom from '../components/DetailsBottom'
+import { getPlayList, getAlbumDetail } from '../api/getData'
+import SubHeader from '../components/Details/SubHeader'
+import DetailsTop from '../components/Details/DetailsTop'
+import DetailsBottom from '../components/Details/DetailsBottom'
 import ScrollView from '../components/ScrollView'
 
 export default {
@@ -33,18 +33,35 @@ export default {
   },
   created () {
     // 获取页面参数时 用$route 注意没有r
-    getPlayList({ id: this.$route.params.id })
-      .then((data) => {
-        this.playList = data.playlist
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    const type = this.$route.params.type
+    switch (type) {
+      case 'personalized':
+        getPlayList({ id: this.$route.params.id })
+          .then((data) => {
+            this.playList = data.playlist
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        break
+      case 'album':
+        getAlbumDetail({ id: this.$route.params.id })
+          .then((data) => {
+            this.playList = {
+              name: data.album.name,
+              coverImgUrl: data.album.picUrl,
+              tracks: data.songs
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        break
+    }
   },
   mounted () {
     // 调用iscroll中封装好的方法获取滑动距离
     const defaultHeight = this.$refs.img.$el.offsetHeight
-    console.log(defaultHeight)
     this.$refs.scrollView.scrolling((offsetY) => {
       if (offsetY > 0) {
         // 向下滑动
@@ -52,8 +69,14 @@ export default {
         this.$refs.img.$el.style.transform = `scale(${scale})`
       } else {
         // 向上滑动
-        const blur = 10 * Math.abs(offsetY) / defaultHeight
-        this.$refs.img.$el.style.filter = `blur(${blur}px)`
+        /*
+        * 设置高斯模糊对移动端性能消耗非常大不建议使用
+        * 替代方案为给图片覆盖颜色设置透明度
+        * */
+        // const blur = 10 * Math.abs(offsetY) / defaultHeight
+        // this.$refs.img.$el.style.filter = `blur(${blur}px)`
+        const opacity = Math.abs(offsetY) / defaultHeight
+        this.$refs.img.changeOpacity(`${opacity}`)
       }
     })
   }

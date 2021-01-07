@@ -1,13 +1,17 @@
 <template>
   <div class="recommend">
-    <ScrollView>
-      <div>
-        <Banner :bannerData="bannerData"></Banner>
-        <Personalized :personalizedData="personalizedData" :title="'推荐歌单'" @select="fatherSelectItem"></Personalized>
-        <Personalized :personalizedData="albumData" :title="'推荐专辑'"></Personalized>
-        <NewSongs :newSongsData="newSongsData"></NewSongs>
-      </div>
-    </ScrollView>
+    <div class="recommend-wrapper">
+      <ScrollView>
+        <div>
+          <Banner :bannerData="bannerData"></Banner>
+          <Personalized :personalizedData="personalizedData" :title="'推荐歌单'" @select="fatherSelectItem"
+                        :type="'personalized'"></Personalized>
+          <Personalized :personalizedData="albumData" :title="'推荐专辑'" @select="fatherSelectItem"
+                        :type="'album'"></Personalized>
+          <NewSongs :newSongsData="newSongsData"></NewSongs>
+        </div>
+      </ScrollView>
+    </div>
     <transition>
       <router-view></router-view>
     </transition>
@@ -16,9 +20,9 @@
 
 <script>
 import { getBanner, getPersonalized, getAlbum, getNewSongs } from '../api/getData'
-import Banner from '../components/Banner'
-import Personalized from '../components/Personalized'
-import NewSongs from '../components/NewSongs'
+import Banner from '../components/Recommend/Banner'
+import Personalized from '../components/Recommend/Personalized'
+import NewSongs from '../components/Recommend/NewSongs'
 import ScrollView from '../components/ScrollView'
 
 export default {
@@ -30,9 +34,9 @@ export default {
     ScrollView
   },
   methods: {
-    fatherSelectItem (id) {
+    fatherSelectItem (id, type) {
       this.$router.push({
-        path: `/recommend/details/${id}`
+        path: `/recommend/details/${id}/${type}`
       })
     }
   },
@@ -86,7 +90,12 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+
+  .recommend-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
 }
 
 .v-enter {
@@ -100,12 +109,15 @@ export default {
 .v-enter-active {
   transition: transform 1s;
 }
+
 .v-leave {
   transform: translateX(0%);
 }
+
 .v-leave-to {
   transform: translateX(100%);
 }
+
 .v-leave-active {
   transition: transform 1s;
 }

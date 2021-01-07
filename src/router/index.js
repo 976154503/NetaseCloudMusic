@@ -20,7 +20,7 @@ const routes = [
     component: Recommend,
     children: [{
       // 子路由节点不用加 /  例如/details 如果添加路由会默认寻找根路径导致页面无法挂载
-      path: 'details/:id',
+      path: 'details/:id/:type',
       component: Details
     }]
   },

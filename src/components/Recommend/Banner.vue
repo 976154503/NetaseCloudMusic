@@ -1,6 +1,5 @@
 <!--轮播图-->
 <template>
-  <div>
     <div class="banner">
       <!--  v-if  解决轮播到最后一页不自动播放    -->
       <swiper
@@ -14,9 +13,7 @@
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
-
     </div>
-  </div>
 </template>
 
 <script>
@@ -84,7 +81,7 @@ export default {
 }
 </style>
 <style lang="scss">
-@import "../assets/css/base";
+@import "../../assets/css/base";
 .banner {
   .swiper-pagination-bullet {
     width: 16px;

@@ -2,7 +2,7 @@
 * 统一管理从服务端获取的数据，方便后期维护
 * 通过export  暴露封装的获取数据方法
 * */
-import netWork from '@/api/netWork'
+import netWork from '../api/netWork'
 
 // 获取Banner
 export const getBanner = () => netWork.get('banner?type=2')
@@ -14,3 +14,5 @@ export const getAlbum = () => netWork.get('album/newest')
 export const getNewSongs = () => netWork.get('/personalized/newsong')
 // 获取歌单详情
 export const getPlayList = (data) => netWork.get('/playlist/detail', data)
+// 获取专辑内容
+export const getAlbumDetail = (data) => netWork.get('/album', data)

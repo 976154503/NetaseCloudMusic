@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/css/base";
+@import "../../assets/css/base";
 
 .title {
   @include font_size($font_large);
@@ -77,7 +77,7 @@ export default {
       //  width: 50px;
       //  height: 50px;
       //}
-      @include bg_image('../assets/images/small_play')
+      @include bg_image('../../assets/images/small_play')
     }
   }
 }
